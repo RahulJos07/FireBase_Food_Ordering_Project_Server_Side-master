@@ -32,6 +32,7 @@ public class OrderStatus extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_status);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         databaseReference= FirebaseDatabase.getInstance().getReference("Requests");
         listorders=(RecyclerView)findViewById(R.id.listorders);
         listorders.setHasFixedSize(true);
@@ -121,5 +122,12 @@ public class OrderStatus extends AppCompatActivity {
         Toast.makeText(this, "Item Deleted !!!!", Toast.LENGTH_SHORT).show();
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
